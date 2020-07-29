@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="Bolnica.View.ScheduleApointementRoomView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:main="clr-namespace:Bolnica"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:Bolnica.View"
+             xmlns:validation="clr-namespace:Bolnica.Validation"
+             xmlns:viewModel="clr-namespace:Bolnica.ViewModel"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="430">
+
+    <UserControl.DataContext>
+        <viewModel:ScheduleApointementRoomViewModel />
+    </UserControl.DataContext>
+
+
+    <StackPanel  VerticalAlignment="Center">
+        <TextBox Text="{Binding RoomNumberSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  materialDesign:HintAssist.Hint="Room number"  Margin="30,0,30,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="TextChanged">
+                    <i:InvokeCommandAction Command="{Binding RoomSearchChangedCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+        </TextBox>
+        <DataGrid Margin="30,20,30,0" Height="430" SelectedItem="{Binding SelectedRoom}" ItemsSource="{Binding FilteredRoomOptions}" AutoGenerateColumns="False" SelectionMode="Single" IsReadOnly="True" Style="{StaticResource MaterialDesignDataGrid}"  >
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Room Number" Binding="{Binding RoomNumber}" />
+                <DataGridTextColumn Header="Type of Room" Binding="{Binding RoomType.Value}" />
+                <DataGridTemplateColumn >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button>Book</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DockPanel Margin="30,30,30,0">
+            <TextBlock Text="{Binding DataGridErrorText, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="30,0,30,0" Foreground="Red"/>
+            <Button Command="{Binding SubmitApointementCommand}"  HorizontalAlignment="Right" Content="Submit"/>
+        </DockPanel>
+    </StackPanel>
+</UserControl>

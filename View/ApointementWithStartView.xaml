@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="Bolnica.View.ApointementWithAccStartView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:main="clr-namespace:Bolnica"
+             xmlns:local="clr-namespace:Bolnica.View"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:validation="clr-namespace:Bolnica.Validation"
+             xmlns:viewModel="clr-namespace:Bolnica.ViewModel"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="430">
+
+    <UserControl.DataContext>
+        <viewModel:ApointementWithAccStartViewModel />
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="Background" Value="Pink"/>
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                            Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+        <StackPanel VerticalAlignment="Center">
+            <TextBox Text="{Binding PatientEmailText, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="30,10,30,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Patient's Email" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction Command="{Binding PatientEmailChangedCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="30,25,30,0">
+                <TextBlock Margin="0,0,30,0" VerticalAlignment="Center" Text="Select date" Style="{StaticResource MaterialDesignTextBlock}"/>
+                <DatePicker SelectedDate="{Binding AppointementDate, Mode=TwoWay}" Margin="10,0,0,0" Style="{StaticResource MaterialDesignDatePicker}" />
+            </StackPanel>
+            <TextBox Text="{Binding DoctorNameText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="30,10,30,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Doctor name">
+                <i:Interaction.Triggers>
+                <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction Command="{Binding DoctorNameChangedCommand}"/>
+                </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+            <DataGrid Margin="30,15,30,0" Height="320" SelectedItem="{Binding SelectedDoctor, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding FilteredDoctorsOptionsList, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single" AutoGenerateColumns="False" IsReadOnly="True" Style="{StaticResource MaterialDesignDataGrid}" >
+                    <DataGrid.Columns >
+                        <DataGridTextColumn Header="Name" Binding="{Binding FirstName}" />
+                        <DataGridTextColumn Header="Rate" Binding="{Binding Rating.Value}" />
+                        <DataGridTextColumn Header="Username" Binding="{Binding Username}" />
+                        <DataGridTemplateColumn >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button>Select</Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            <DockPanel Margin="30,30,30,0">
+                <TextBlock Text="{Binding DataGridErrorText, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"  HorizontalAlignment="Left" Margin="10,0,30,0" Foreground="Red"/>
+                <Button Command="{Binding GoToSelectTermCommand}"  HorizontalAlignment="Right" Content="Select a Term"/>
+            </DockPanel>
+        </StackPanel>
+</UserControl>

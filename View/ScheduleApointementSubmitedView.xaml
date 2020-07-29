@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Bolnica.View.ScheduleApointementSubmitedView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:main="clr-namespace:Bolnica"
+             xmlns:local="clr-namespace:Bolnica.View"
+             xmlns:validation="clr-namespace:Bolnica.Validation"
+             xmlns:viewModel="clr-namespace:Bolnica.ViewModel"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="430">
+
+    <UserControl.DataContext>
+        <viewModel:ScheduleApointementSubmitedViewModel />
+    </UserControl.DataContext>
+
+    <DockPanel VerticalAlignment="Center" >
+        <StackPanel Margin="50,0,50,0" DockPanel.Dock="Top">
+            <TextBlock Text="{Binding SubmitStatusText}"  TextAlignment="Center" TextWrapping="Wrap" FontSize="17" Margin="10,0,10,0" />
+            <Grid Margin="0,60,0,0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel  Grid.Column="0" Orientation="Vertical">
+                    <TextBlock Text="Type of intervention" TextAlignment="Left" FontSize="15" Margin="0,20,0,0" />
+                    <TextBlock Text="Doctor" TextAlignment="Left" FontSize="15" Margin="0,20,0,0" />
+                    <TextBlock Text="Date" TextAlignment="Left" FontSize="15" Margin="0,20,0,0" />
+                    <TextBlock Text="Time" TextAlignment="Left" FontSize="15" Margin="0,20,0,0" />
+                    <TextBlock Text="Room" TextAlignment="Left" FontSize="15" Margin="0,20,0,0" />
+                </StackPanel>
+                <StackPanel  Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" >
+                    <TextBlock Text="{Binding TypeOfIntervention}" TextAlignment="Left" FontSize="15" Margin="0,20,0,0" />
+                    <TextBlock Text="{Binding DoctorFullName}" TextAlignment="Center" FontSize="15" Margin="0,20,0,0" />
+                    <TextBlock Text="{Binding ApointementDate}" TextAlignment="Center" FontSize="15" Margin="0,20,0,0" />
+                    <TextBlock Text="{Binding ApointementTime}" TextAlignment="Center" FontSize="15" Margin="0,20,0,0" />
+                    <TextBlock Text="{Binding ApointementRoom}" TextAlignment="Center" FontSize="15" Margin="0,20,0,0" />
+                </StackPanel>
+
+            </Grid>
+            <TextBlock Text="{Binding EmergencyText}" Foreground="Red" TextAlignment="Center" TextWrapping="Wrap" FontSize="17" Margin="10,20,10,0" />
+            <Button Command="{Binding GoHomeCommand}" Margin="0,50,0,0" HorizontalAlignment="Center" Content="Home page"/>
+
+        </StackPanel>
+    </DockPanel>
+</UserControl>

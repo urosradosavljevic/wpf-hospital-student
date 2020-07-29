@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{86EE9202-5969-48D5-AA87-937A94CEC4FD}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Bolnica</RootNamespace>
+    <AssemblyName>Bolnica</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CsvHelper, Version=15.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>packages\CsvHelper.15.0.5\lib\net47\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>packages\FluentValidation.8.6.2\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.2.6.1513, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignColors.1.2.6\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=3.1.3.1513, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignThemes.3.1.3\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.ComponentModel.Annotations.4.4.1\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Controller\Abstract\IAppointementController.cs" />
+    <Compile Include="Controller\Abstract\IController.cs" />
+    <Compile Include="Controller\Abstract\IPatientController.cs" />
+    <Compile Include="Controller\Abstract\ISecretaryController.cs" />
+    <Compile Include="Controller\FeedbackController.cs" />
+    <Compile Include="Controller\RoomController.cs" />
+    <Compile Include="Controller\PatientController.cs" />
+    <Compile Include="Controller\AppointementController.cs" />
+    <Compile Include="Controller\DoctorController.cs" />
+    <Compile Include="Controller\SecretaryController.cs" />
+    <Compile Include="Exception\EntityNotFoundException.cs" />
+    <Compile Include="Exception\ValidationException.cs" />
+    <Compile Include="Model\Feedback.cs" />
+    <Compile Include="Model\Secretary.cs" />
+    <Compile Include="Model\Util\BloodType.cs" />
+    <Compile Include="Model\Util\Email.cs" />
+    <Compile Include="Model\Util\Password.cs" />
+    <Compile Include="Model\Util\PhoneNumber.cs" />
+    <Compile Include="Model\Util\Rate.cs" />
+    <Compile Include="Model\Util\RoomType.cs" />
+    <Compile Include="Model\Util\Term.cs" />
+    <Compile Include="Repository\Abstract\IAppointementRepository.cs" />
+    <Compile Include="Repository\Abstract\ISecretaryRepository.cs" />
+    <Compile Include="Repository\Abstract\IFeedbackRepository.cs" />
+    <Compile Include="Repository\Abstract\IRoomRepository.cs" />
+    <Compile Include="Repository\Abstract\IPatientRepository.cs" />
+    <Compile Include="Repository\Abstract\IDoctorRepository.cs" />
+    <Compile Include="Repository\Abstract\IIdentifiable.cs" />
+    <Compile Include="Repository\CSV\Converter\SecretaryCSVConverter.cs" />
+    <Compile Include="Repository\CSV\Converter\FeedbackCSVConverter.cs" />
+    <Compile Include="Repository\SecretaryRepository.cs" />
+    <Compile Include="Repository\FeedbackRepository.cs" />
+    <Compile Include="Repository\CSV\Converter\AppointementCSVConverter.cs" />
+    <Compile Include="Repository\CSV\Converter\RoomCSVConverter.cs" />
+    <Compile Include="Repository\CSV\Converter\DoctorCSVConverter.cs" />
+    <Compile Include="Repository\CSV\Converter\ICSVConverter.cs" />
+    <Compile Include="Repository\CSV\Converter\PatientCSVConverter.cs" />
+    <Compile Include="Repository\CSV\CSVRepository.cs" />
+    <Compile Include="Repository\CSV\IEagerCSVRepository.cs" />
+    <Compile Include="Repository\CSV\Stream\CSVStream.cs" />
+    <Compile Include="Repository\CSV\Stream\ICSVStream.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\RoomRepository.cs" />
+    <Compile Include="Repository\AppointementRepository.cs" />
+    <Compile Include="Repository\PatientRepository.cs" />
+    <Compile Include="Repository\DoctorRepository.cs" />
+    <Compile Include="Repository\Sequencer\ISequencer.cs" />
+    <Compile Include="Repository\Sequencer\LongSequencer.cs" />
+    <None Include="Resources\Data\temp_patients.csv" />
+    <None Include="Resources\Data\secretaries.csv" />
+    <Compile Include="Service\Abstract\ISecretaryService.cs" />
+    <Compile Include="Service\Abstract\IPatientService.cs" />
+    <Compile Include="Service\FeedbackService.cs" />
+    <Compile Include="Service\Abstract\IAppointementService.cs" />
+    <Compile Include="Service\Abstract\IService.cs" />
+    <Compile Include="Service\SecretaryService.cs" />
+    <Compile Include="Service\RoomService.cs" />
+    <Compile Include="Service\AppointementService.cs" />
+    <Compile Include="Service\PatientService.cs" />
+    <Compile Include="Service\DoctorService.cs" />
+    <Compile Include="ViewModel\Util\BindableBase.cs" />
+    <Compile Include="ViewModel\Util\BindingConverter.cs" />
+    <Compile Include="Model\Appointement.cs" />
+    <Compile Include="Model\Doctor.cs" />
+    <Compile Include="Model\Room.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="ViewModel\Util\MyICommand.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\Util\MyICommandWithPassword.cs" />
+    <Compile Include="ViewModel\Util\Validation\ScheduledApointementsStartValidator.cs" />
+    <Compile Include="ViewModel\Util\Validation\RegisterPatient1Validator.cs" />
+    <Compile Include="ViewModel\Util\Validation\ApointementWithoutStartValidator.cs" />
+    <Compile Include="ViewModel\Util\Validation\ApointementWithStartValidator.cs" />
+    <Compile Include="ViewModel\Util\Validation\LoginUserValidator.cs" />
+    <Compile Include="ViewModel\ApointementWithoutAccStartViewModel.cs" />
+    <Compile Include="ViewModel\FeedbackViewModel.cs" />
+    <Compile Include="ViewModel\InfoViewModel.cs" />
+    <Compile Include="ViewModel\PunishPatientViewModel.cs" />
+    <Compile Include="ViewModel\ScheduleApointementPeriodDoctorViewModel.cs" />
+    <Compile Include="ViewModel\HomeViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\RegisterPatientView3Model.cs" />
+    <Compile Include="ViewModel\RegisterPatientView2Model.cs" />
+    <Compile Include="ViewModel\ScheduleApointementRoomViewModel.cs" />
+    <Compile Include="ViewModel\AccountInfoViewModel.cs" />
+    <Compile Include="ViewModel\ScheduleApointementSubmitedViewModel.cs" />
+    <Compile Include="ViewModel\AssignRoomViewModel.cs" />
+    <Compile Include="ViewModel\ScheduledApointementTermChangeViewModel.cs" />
+    <Compile Include="ViewModel\ScheduledApointementDoctorChangeViewModel.cs" />
+    <Compile Include="ViewModel\ScheduleApointementTermViewModel.cs" />
+    <Compile Include="ViewModel\ApointementWithAccStartViewModel.cs" />
+    <Compile Include="ViewModel\ScheduledApointementsDisplayViewModel.cs" />
+    <Compile Include="ViewModel\ScheduledApointementsStartViewModel.cs" />
+    <Compile Include="View\ApointementWithoutAccStartView.xaml.cs">
+      <DependentUpon>ApointementWithoutAccStartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FeedbackView.xaml.cs">
+      <DependentUpon>FeedbackView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\InfoView.xaml.cs">
+      <DependentUpon>InfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PunishPatientView.xaml.cs">
+      <DependentUpon>PunishPatientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScheduleApointementPeriodDoctorView.xaml.cs">
+      <DependentUpon>ScheduleApointementPeriodDoctorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RegisterPatient3View.xaml.cs">
+      <DependentUpon>RegisterPatient3View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RegisterPatient2View.xaml.cs">
+      <DependentUpon>RegisterPatient2View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RegisterPatient1View.xaml.cs">
+      <DependentUpon>RegisterPatient1View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScheduleApointementRoomView.xaml.cs">
+      <DependentUpon>ScheduleApointementRoomView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AccountInfoView.xaml.cs">
+      <DependentUpon>AccountInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScheduledApointementDoctorChangeView.xaml.cs">
+      <DependentUpon>ScheduledApointementDoctorChangeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AssignRoomView.xaml.cs">
+      <DependentUpon>AssignRoomView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScheduledApointementTermChangeView.xaml.cs">
+      <DependentUpon>ScheduledApointementTermChangeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScheduleApointementSubmitedView.xaml.cs">
+      <DependentUpon>ScheduleApointementSubmitedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScheduleApointementTermView.xaml.cs">
+      <DependentUpon>ScheduleApointementTermView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScheduledApointementsStartView.xaml.cs">
+      <DependentUpon>ScheduledApointementsStartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScheduledApointementsDisplayView.xaml.cs">
+      <DependentUpon>ScheduledApointementsDisplayView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ApointementWithStartView.xaml.cs">
+      <DependentUpon>ApointementWithStartView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\RegisterPatientView1Model.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\ApointementWithoutAccStartView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\FeedbackView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\InfoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PunishPatientView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ScheduleApointementPeriodDoctorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RegisterPatient3View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\RegisterPatient2View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\RegisterPatient1View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ScheduleApointementRoomView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\AccountInfoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ScheduledApointementDoctorChangeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\AssignRoomView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ScheduledApointementTermChangeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ScheduleApointementSubmitedView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ScheduleApointementTermView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ScheduledApointementsStartView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ScheduledApointementsDisplayView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ApointementWithStartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\Patient.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\Data\appointements.csv" />
+    <None Include="Resources\Data\feedback.csv" />
+    <None Include="Resources\Data\rooms.csv" />
+    <None Include="Resources\Data\patients.csv" />
+    <None Include="Resources\Data\doctors.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Assets\hospital_logo.jpg" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="packages\MaterialDesignThemes.3.1.3\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.3.1.3\build\MaterialDesignThemes.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\MaterialDesignThemes.3.1.3\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MaterialDesignThemes.3.1.3\build\MaterialDesignThemes.targets'))" />
+  </Target>
+</Project>

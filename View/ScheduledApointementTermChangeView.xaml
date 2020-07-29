@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Bolnica.View.ScheduledApointementTermChangeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:main="clr-namespace:Bolnica"
+             xmlns:local="clr-namespace:Bolnica.View"
+             xmlns:validation="clr-namespace:Bolnica.Validation"
+             xmlns:viewModel="clr-namespace:Bolnica.ViewModel"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="430">
+
+    <UserControl.DataContext>
+        <viewModel:ScheduledApointementTermChangeViewModel />
+    </UserControl.DataContext>
+    
+
+
+    <StackPanel  VerticalAlignment="Center">
+        <DockPanel Margin="20,20,20,0" >
+            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" Text="Select day" />
+            <ComboBox ItemsSource="{Binding Path=DateSortingOptions,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="" SelectedItem="{Binding SelectedDateFilter}" HorizontalAlignment="Right" IsEditable="False" Width="130"  />
+        </DockPanel>
+        
+        <DataGrid Margin="20,30,20,0" Height="420" AutoGenerateColumns="False" SelectedItem="{Binding SelectedTerm}" ItemsSource="{Binding Path=TermOptionsList}" SelectionMode="Single" IsReadOnly="True" Style="{StaticResource MaterialDesignDataGrid}"  >
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Appointment" Binding="{Binding Value}" />
+                <DataGridTemplateColumn >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button>Select</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DockPanel Margin="20,30,20,0">
+            <TextBlock Text="{Binding DataGridErrorText, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Margin="30,0,30,0" Foreground="Red"/>
+            <Button Command="{Binding GoToNextPageCommand}"  HorizontalAlignment="Right" Content="Submit"/>
+        </DockPanel>
+    </StackPanel>
+</UserControl>

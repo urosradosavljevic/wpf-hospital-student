@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Bolnica.View.ScheduledApointementsStartView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bolnica.View"
+             xmlns:validation="clr-namespace:Bolnica.Validation"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:viewModel="clr-namespace:Bolnica.ViewModel"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="430">
+
+
+    <UserControl.DataContext>
+        <viewModel:ScheduledApointementsStartViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="Background" Value="Pink"/>
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                            Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <DockPanel >
+        <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
+            <ComboBox materialDesign:HintAssist.Hint="Doctor" ItemsSource="{Binding DoctorsOptions,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedDoctor}" DisplayMemberPath="FullName" Margin="30,20,30,0"  Style="{StaticResource MaterialDesignFloatingHintComboBox}"   />
+            <TextBox Text="{Binding PatientEmailText, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="30,10,30,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Patient's Email" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction Command="{Binding PatientEmailChangedCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="30,30,30,0">
+                    <CheckBox IsChecked="{Binding ApplyDateFilter}" Content="Apply Date Filter " />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,0"  >
+                    <TextBlock FontSize="15" Margin="10,0,20,0" VerticalAlignment="Center" Text="Choose Date" />
+                    <DatePicker SelectedDate="{Binding AppointementDate,UpdateSourceTrigger=PropertyChanged}" FontSize="13" Style="{StaticResource MaterialDesignDatePicker}" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="30,20,30,0" >
+                <ComboBox materialDesign:HintAssist.Hint="Choose Room" ItemsSource="{Binding RoomOptions,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedRoom}" DisplayMemberPath="RoomNumber" Style="{StaticResource MaterialDesignFloatingHintComboBox}"   />
+            </StackPanel>
+            
+            <DockPanel Margin="30,40,30,0" >
+                <TextBlock Text="{Binding ErrorText, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="0,0,30,0" VerticalAlignment="Center" Foreground="Red"/>
+
+                <Button Command="{Binding NextPageCommand}" Content="{Binding NextButtonText}" VerticalAlignment="Center" HorizontalAlignment="Right"  />
+            </DockPanel>
+            
+        </StackPanel>
+    </DockPanel>
+</UserControl>

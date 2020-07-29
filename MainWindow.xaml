@@ -1,0 +1,304 @@
+﻿<Window x:Class="Bolnica.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:Bolnica"
+        xmlns:viewModel="clr-namespace:Bolnica.ViewModel"
+        xmlns:view="clr-namespace:Bolnica.View"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        mc:Ignorable="d"
+        Title="Feel Good Hospital" Height="750" Width="430" WindowStyle="None" ResizeMode="NoResize">
+
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
+            <view:LoginView/>
+        </DataTemplate>
+        <!-- Home -->
+        <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+            <view:HomeView/>
+        </DataTemplate>
+        <!-- Register -->
+        <DataTemplate DataType="{x:Type viewModel:RegisterPatientView1Model}">
+            <view:RegisterPatient1View/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:RegisterPatientView2Model}">
+            <view:RegisterPatient2View/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:RegisterPatientView3Model}">
+            <view:RegisterPatient3View/>
+        </DataTemplate>
+        <!-- Punish Patient -->
+        <DataTemplate DataType="{x:Type viewModel:PunishPatientViewModel}">
+            <view:PunishPatientView/>
+        </DataTemplate>
+        <!-- AssignRoom -->
+        <DataTemplate DataType="{x:Type viewModel:AssignRoomViewModel}">
+            <view:AssignRoomView/>
+        </DataTemplate>
+        <!-- Scheduled Apointements -->
+        <DataTemplate DataType="{x:Type viewModel:ScheduledApointementsStartViewModel}">
+            <view:ScheduledApointementsStartView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ScheduledApointementsDisplayViewModel}">
+            <view:ScheduledApointementsDisplayView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ScheduledApointementTermChangeViewModel}">
+            <view:ScheduledApointementTermChangeView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ScheduledApointementDoctorChangeViewModel}">
+            <view:ScheduledApointementDoctorChangeView/>
+        </DataTemplate>
+        <!-- Schedule Apointement -->
+        <!-- Schedule Apointement With Account -->
+        <DataTemplate DataType="{x:Type viewModel:ApointementWithAccStartViewModel}">
+            <view:ApointementWithAccStartView/>
+        </DataTemplate>
+        <!-- Schedule Apointement Without Account -->
+        <DataTemplate DataType="{x:Type viewModel:ApointementWithoutAccStartViewModel}">
+            <view:ApointementWithoutAccStartView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ScheduleApointementPeriodDoctorViewModel}">
+            <view:ScheduleApointementPeriodDoctorView/>
+        </DataTemplate>
+        <!-- Schedule Apointement Shared -->
+        <DataTemplate DataType="{x:Type viewModel:ScheduleApointementTermViewModel}">
+            <view:ScheduleApointementTermView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ScheduleApointementRoomViewModel}">
+            <view:ScheduleApointementRoomView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ScheduleApointementSubmitedViewModel}">
+            <view:ScheduleApointementSubmitedView/>
+        </DataTemplate>
+        <!-- Feedback -->
+        <DataTemplate DataType="{x:Type viewModel:FeedbackViewModel}">
+            <view:FeedbackView/>
+        </DataTemplate>
+        <!-- Info -->
+        <DataTemplate DataType="{x:Type viewModel:InfoViewModel}">
+            <view:InfoView/>
+        </DataTemplate>
+        <!-- Account Info -->
+        <DataTemplate DataType="{x:Type viewModel:AccountInfoViewModel}">
+            <view:AccountInfoView/>
+        </DataTemplate>
+
+        <!-- Animation -->
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu" >
+                <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="300" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MenuClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="300" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MenuItemClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" >
+                <EasingDoubleKeyFrame KeyTime="0" Value="300" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        
+        <!-- Global Style Textbox Error -->
+        
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self},
+                            Path=(Validation.Errors)[0].ErrorContent}" />                  
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!-- Style -->
+        <Style x:Key="SideBarMenu" TargetType="{x:Type Menu}">
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="MenuItem">
+                        <Setter Property="Height" Value="50"/>
+                        <Setter Property="Padding" Value="5,3,0,0"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <Style x:Key="SideBarGrid" TargetType="{x:Type Grid}">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MenuItem.Click" >
+                    <BeginStoryboard Storyboard="{StaticResource MenuItemClose}" />
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu" >
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu" >
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}" />
+        </EventTrigger>
+    </Window.Triggers>
+
+    <!-- Layout -->
+    <Grid>
+        <materialDesign:DialogHost  >
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel Orientation="Vertical" Margin="20" Width="340">
+                    <TextBlock Text="Help" Margin="0,10,0,20" HorizontalAlignment="Center" FontSize="20"/>
+                    <TextBlock Text="{Binding HelpText}" Margin="0,10,0,30" TextWrapping="Wrap" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="Close"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" />
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+        <Grid>
+        <materialDesign:Card>
+            <Grid x:Name="AppHeader" Height="70" Width="430" VerticalAlignment="Top"  >                
+                <Button x:Name="ButtonOpenMenu" Command="{Binding MenuOpenCommand}" HorizontalAlignment="Left" Background="Transparent" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0" Margin="10,0,20,0" >
+                    <materialDesign:PackIcon Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" Kind="HamburgerMenu" />
+                    <Button.Style >
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Path=DataContext.LoginFlag,UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <TextBlock Text="{Binding HeaderLabelText, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" />
+
+                <Button  Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" HorizontalAlignment="Right" Background="Transparent" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0" Margin="10,0,30,0"  >
+                    <materialDesign:PackIcon Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" Kind="HelpCircle" />
+                </Button>
+            </Grid>
+        </materialDesign:Card>
+
+        <Grid>
+            
+            <ContentControl Margin="0,70,0,50" Padding="0" Content="{Binding CurrentViewModel}" />
+
+        </Grid>
+
+        <Grid x:Name="AppBottomNav" Height="50" Background="Black" VerticalAlignment="Bottom">
+            <Grid.Style >
+                <Style TargetType="{x:Type Grid}">
+                        <Setter Property="Visibility" Value="Hidden"/>
+                <Style.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Path=DataContext.LoginFlag,UpdateSourceTrigger=PropertyChanged}" Value="True">
+                        <Setter Property="Visibility" Value="Visible"/>
+                    </DataTrigger>
+                </Style.Triggers>                    
+                </Style>
+            </Grid.Style>
+            <Button HorizontalAlignment="Left" Background="Transparent" Command="{Binding NavCommand}" CommandParameter="{Binding BackNavRoute,UpdateSourceTrigger=PropertyChanged}" BorderBrush="{x:Null}" Width="40" Height="40" Padding="0"  Margin="80,0,10,0" >
+                <materialDesign:PackIcon Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Kind="ArrowLeft" />
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Visibility" Value="Hidden"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Path=DataContext.BackButtonEnabled,UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>            
+            
+            <Button Command="{Binding NavCommand}" CommandParameter="home" HorizontalAlignment="Center" Background="Transparent" BorderBrush="{x:Null}" Width="40" Height="40" Padding="0" Margin="10,0,10,0" >
+                <materialDesign:PackIcon Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Kind="House"/>
+            </Button>
+
+        </Grid>
+
+        <Grid Panel.ZIndex="5000" x:Name="GridMenu" Style="{StaticResource SideBarGrid}" Background="{StaticResource MaterialDesignPaper}"  Width="0" HorizontalAlignment="Left" >
+            <StackPanel >
+                <Grid Height="70" Width="300" HorizontalAlignment="Left">
+                    <Button x:Name="ButtonCloseMenu" HorizontalAlignment="Left" Background="Transparent" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0" Margin="10,0,10,0" >
+                        <materialDesign:PackIcon Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" Kind="Close" />
+                    </Button>
+                </Grid>
+                <Menu Background="{StaticResource MaterialDesignPaper}" Style="{StaticResource SideBarMenu}" >
+                    <Menu.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </Menu.ItemsPanel>
+                    <MenuItem Header="Scheduled examinations" Command="{Binding NavCommand}" CommandParameter="scheduled_apointements">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Assignment" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Assign room to apointements" Command="{Binding NavCommand}" CommandParameter="assign_room" >
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="AssignmentTurnedIn" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Schedule Apointement with Account" Command="{Binding NavCommand}" CommandParameter="apointement_with_account" >
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="AssignmentInd" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Schedule Apointement without Account" Command="{Binding NavCommand}" CommandParameter="apointement_without_account">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Assignment" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Register patient" Command="{Binding NavCommand}" CommandParameter="register_patient" >
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Register" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Punish patients" Command="{Binding NavCommand}" CommandParameter="punish_patient" >
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="UserAlert" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Leave Feedback" Command="{Binding NavCommand}" CommandParameter="feedback" >
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Feedback" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Account info" Command="{Binding NavCommand}" CommandParameter="account_info" >
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="AccountHelp" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Sign out" Command="{Binding NavCommand}" CommandParameter="sign_out" >
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Logout" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Exit" Command="{Binding NavCommand}" CommandParameter="exit" >
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="ExitRun"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </Menu>
+            </StackPanel>
+                </Grid>
+
+            </Grid>
+        </materialDesign:DialogHost>
+    </Grid>
+</Window>

@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="Bolnica.View.ApointementWithoutAccStartView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:main="clr-namespace:Bolnica"
+             xmlns:local="clr-namespace:Bolnica.View"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:validation="clr-namespace:Bolnica.Validation"
+             xmlns:viewModel="clr-namespace:Bolnica.ViewModel"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="430">
+
+    <UserControl.DataContext>
+        <viewModel:ApointementWithoutAccStartViewModel />
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="Background" Value="Pink"/>
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                            Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel VerticalAlignment="Center">
+        <TextBox Text="{Binding PatientFirstName,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"  Margin="30,20,30,0" materialDesign:HintAssist.Hint="Patient's First Name" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Text="{Binding PatientLastName,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="30,20,30,0"  materialDesign:HintAssist.Hint="Patient's Last Name" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="30,40,30,0" >
+            <TextBlock FontSize="15"  Margin="0,0,20,0" VerticalAlignment="Center" Text="Gender" />
+            <RadioButton 
+                    FontSize="15" 
+                    Margin="5,0,20,0"
+                    Content="Female" 
+                    VerticalContentAlignment="Center" 
+                    Style="{StaticResource MaterialDesignRadioButton}"
+                    Command="{Binding SelectGenderCommand}"      
+                    CommandParameter="male"
+                />
+            <RadioButton 
+                    FontSize="15" 
+                     Margin="5,0,20,0"
+                    Content="Male" 
+                    VerticalContentAlignment="Center" 
+                    Style="{StaticResource MaterialDesignRadioButton}"
+                    Command="{Binding SelectGenderCommand}"      
+                    CommandParameter="female"
+                />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="30,20,30,0">
+            <TextBlock VerticalAlignment="Center" Text="Date of Birth" FontSize="15"  />
+
+            <DatePicker  SelectedDate="07/05/2020" Margin="20,0,0,0" Style="{StaticResource MaterialDesignDatePicker}" />
+            <!--
+                <DatePicker  SelectedDate="{Binding PeriodFrom,  Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}}" Margin="10,0,0,0" Style="{StaticResource MaterialDesignDatePicker}" />
+                -->
+        </StackPanel>
+        <TextBox Text="{Binding PatientEmail, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="30,25,30,0"  materialDesign:HintAssist.Hint="Patient's Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+        <TextBox Text="{Binding PatientPhoneNumber,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"  Margin="30,20,30,0"  materialDesign:HintAssist.Hint="Patient's Phone Number" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox Text="{Binding PatientAddress,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"  Margin="30,20,30,0" materialDesign:HintAssist.Hint="Patient's Address" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+        <DockPanel Margin="30,40,30,0">
+            <TextBlock Text="{Binding ErrorText, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="30,0,30,0" Foreground="Red"/>
+            <Button Command="{Binding GoToSelectTermCommand}"  HorizontalAlignment="Right" Content="Select a Term"/>
+        </DockPanel>
+    </StackPanel>
+</UserControl>
